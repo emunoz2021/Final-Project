@@ -1,4 +1,3 @@
-
 package zoosimulator;
 
 import java.awt.Color;
@@ -6,27 +5,55 @@ import java.awt.Image;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.Graphics;
 
 public class PanelsubPrincipal extends JPanel {
-
     private JButton BotonHabitat, BotonAnimal, BotonComida, BotonExit;
-    
     public int num1 = 0, num2 = 0;
     ImageIcon path;
     JFrame ventanita;
+    private Image fondo;
+
+    private JPanel panel1, panel2, panel3, panel4; //Paneles que usaremos para colocar los habitats
 
     public PanelsubPrincipal(JFrame vent1) {
         ventanita = vent1;
         setLayout(null);
-        Entorno();
+        this.fondo = new ImageIcon("path.jpg").getImage(); 
+        
+        panel1 = new JPanel();
+        panel1.setBounds(175, 5, 218, 226);
+        configuraPanel(panel1);
+
+        panel2 = new JPanel();
+        panel2.setBounds(551, 5, 229, 215);
+        configuraPanel(panel2);
+
+        panel3 = new JPanel();
+        panel3.setBounds(175, 381, 219, 226);
+        configuraPanel(panel3);
+
+        panel4 = new JPanel();
+        panel4.setBounds(551, 378, 229, 230);
+        configuraPanel(panel4);
+
+        add(panel1);
+        add(panel2);
+        add(panel3);
+        add(panel4);
+
         CargaBotones();
     }
 
-    private void Entorno() {
-        path = new ImageIcon("path.jpg");
-        JLabel camino = new JLabel(path);
-        camino.setBounds(173, 0, 609, 630);
-        add(camino, 0);
+    private void configuraPanel(JPanel panel) {
+        panel.setOpaque(true);  // Panel opaco
+        panel.setBackground(Color.BLACK);  // Fondo negro
+        panel.setLayout(null);  // Sin layout
+    }
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);
     }
 
     private void CargaBotones() {
@@ -62,7 +89,7 @@ public class PanelsubPrincipal extends JPanel {
 
         OyentesMouse();
     }
-    
+
     public JFrame getVentanita() {
         return this.ventanita;
     }
@@ -121,8 +148,7 @@ public class PanelsubPrincipal extends JPanel {
         };
         BotonExit.addMouseListener(MouseExit);
     }
-    
-    
+
     @SuppressWarnings("deprecation")
     private void OyenteHabitat(){
         MouseListener MouseHabitat= new MouseListener() {
@@ -150,4 +176,3 @@ public class PanelsubPrincipal extends JPanel {
         BotonHabitat.addMouseListener(MouseHabitat);
     }
 }
-
