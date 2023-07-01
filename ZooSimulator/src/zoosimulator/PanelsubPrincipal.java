@@ -10,6 +10,13 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
+/**
+ * Clase PanelsubPrincipal, donde hacemos la mayor parte de nuestro codigo
+ * @field BotonHabitat, BotonAnimal, BotonComida, BotonExit, botones de menu para interactuar con el programa
+ * @field ventanita, referencia que usamos para ventana, para asi poder usarla en nuestro BotonExit
+ * @fiell panel1, panel2, panel3, panel4, Paneles donde iran nuestras Jaulas para los Animales y sus Habitats
+ */
+
 public class PanelsubPrincipal extends JPanel {
     private JButton BotonHabitat, BotonAnimal, BotonComida, BotonExit;
     JFrame ventanita;
@@ -18,6 +25,11 @@ public class PanelsubPrincipal extends JPanel {
     private Jaula2 panel2;
     private Jaula3 panel3;
     private Jaula4 panel4;
+    
+    /**
+     * Metodo constructor, inicializamos las variables y ademas de poner el imagen path de fondo
+     * @param vent1, parametro que se asigna a ventanita
+     */
 
     public PanelsubPrincipal(JFrame vent1) {
         ventanita = vent1;
@@ -44,12 +56,19 @@ public class PanelsubPrincipal extends JPanel {
         add(panel4);
         CargaBotones();
     }
-
+    
+    /**
+    *Metodo que utiliza el metodo graphics para dibujar las bebidas y la expendedora
+     * @param g, corresponde a el parametro recibido por el Graphics para dibujar en el JPanel
+     */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);
     }
-
+    
+    /**
+     * Metodo donde inicializamos nuestros botones, le damos sus tamaño e imagenes 
+     */
     private void CargaBotones() {
         BotonHabitat = new JButton();
         BotonHabitat.setBounds(0, 0, 170, 153);
@@ -83,17 +102,26 @@ public class PanelsubPrincipal extends JPanel {
 
         OyentesMouse();
     }
-
+    /**
+     * Metodo getter de ventanita
+     * @return ventanita, nos ayuda a trabajar de mejor manera con ella para cerrar o eliminar panelBotonesAnimales
+     */
     public JFrame getVentanita() {
         return this.ventanita;
     }
-
+    
+    /**
+     * Metodo que reune los metodos MouseListener para un mejor orden
+     */
     private void OyentesMouse() {
         OyenteAnimales();
         OyenteHabitat();
         oyenteExit();
     }
-
+    
+    /*
+    * Metodo MouseListener de Animales que nos ayuda a colocar los animales
+    */
     @SuppressWarnings("deprecation")
     private void OyenteAnimales() {
         MouseListener MouseAnimal = new MouseListener() {
@@ -125,6 +153,10 @@ public class PanelsubPrincipal extends JPanel {
         };
         BotonAnimal.addMouseListener(MouseAnimal);
     }
+    
+    /*
+    * Metodo MouseListener de Exit, que cierra el Programa
+    */
 
     private void oyenteExit() {
         MouseListener MouseExit = new MouseListener() {
@@ -148,7 +180,10 @@ public class PanelsubPrincipal extends JPanel {
         };
         BotonExit.addMouseListener(MouseExit);
     }
-
+    
+    /*
+    * Metodo MouseListener de Habitat, que se encarga de poner los Habitats
+    */
     @SuppressWarnings("deprecation")
     private void OyenteHabitat(){
         MouseListener MouseHabitat= new MouseListener() {

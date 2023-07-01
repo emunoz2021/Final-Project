@@ -1,8 +1,6 @@
 
 package zoosimulator;
 
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,6 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Clase que es el Panel principal para los subpaneles correspondientes
+ * @field frame, lo usamos para inicializar la referencia de frame de Ventana a PanelPrincipal
+ * @field Zoo, ImageIcon de la imagen de fondo de Zoologico que la usaremos de fondo
+ * @field botonPlay, boton play con el cual accederemos a PanelsubPrincipal
+ * @field botonOption, boton que pensamos darle la funcionalidad de colocar musica y las reglas del juego, pero no lo usamos
+ * @field botonExit, boton que cierra la ventana
+*/
+
 public class PanelPrincipal extends JPanel {
     private JFrame frame;
     PanelsubPrincipal subPane;
@@ -21,14 +28,18 @@ public class PanelPrincipal extends JPanel {
     JButton botonOption;
     JButton botonExit;
     
-    
+    /**
+    * Metodo constructor de la clase, le asignamos al ImageIcon la imagen de "Zoo.jpg" y desactivamos el setLayout para desactivar el diseño predeterminado
+    */
     PanelPrincipal(JFrame frame){
         this.frame = frame;
         Zoo = new ImageIcon("Zoo.jpg");
         
         setLayout(null);
     }
-    
+    /**
+    *Metodo que pinta las componentes del PanelPrincipal mediante el metodo graphics a este panel
+    */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -36,7 +47,9 @@ public class PanelPrincipal extends JPanel {
         Botones();
     }
     
-    
+    /**
+     *Metodo donde creamos los Botones, le asignamos sus medidas, posiciones y le colocamos imagenes
+     */
     private void Botones(){
         botonPlay = new JButton();
         botonPlay.setBounds(337, 225, 120, 60);
@@ -64,12 +77,18 @@ public class PanelPrincipal extends JPanel {
         
         OyentesDeMouse();
     }
-    
+    /**
+     * Metodo para tener todos los metodos MouseListener de los botones de PanelPrincipal para mantener el orden
+     */
     private void OyentesDeMouse(){
         oyenteDePlay();
         oyenteDeOption();
         oyenteDeExit();
     }
+    
+    /**
+    * Metodo MouseListener para el botonPlay, que usamos para cambiar al PanelSubPrincipal
+    */
     
     private void oyenteDePlay(){
         MouseListener play = new MouseListener(){
@@ -84,12 +103,6 @@ public class PanelPrincipal extends JPanel {
                 System.out.println("Se Accedio al boton Play");
                 subPane = new PanelsubPrincipal(frame);
                 
-                /*try {
-                    Thread.sleep(1000); 
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }*/
-                
                 frame.setContentPane(subPane);
                 frame.revalidate();
             }
@@ -102,6 +115,10 @@ public class PanelPrincipal extends JPanel {
         };
     botonPlay.addMouseListener(play);
     }
+    
+    /**
+    * Metodo MouseListener para el botonOption, el cual no usamos
+    */
     
     private void oyenteDeOption() {
         MouseListener option = new MouseListener() {
@@ -125,7 +142,9 @@ public class PanelPrincipal extends JPanel {
         botonOption.addMouseListener(option);
     }
     
-    
+    /**
+    * Metodo MouseListener para el botonExit, que cierra la ventana
+    */
     private void oyenteDeExit() {
         MouseListener exit = new MouseListener() {
             @Override

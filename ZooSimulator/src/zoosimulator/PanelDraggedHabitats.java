@@ -7,6 +7,12 @@ import javax.swing.SwingUtilities;
 import java.awt.event.MouseAdapter;
 import java.awt.Rectangle;
 
+/*
+* Clase que es la encargada de soltar los Habitats JLabel en los paneles
+* @field Jungla,Desierto, jlabel que usaremos para poner de Habitats
+* @field panelcito1, panelcito2, panelcito3, panelcito4, paneles donde pondremos las referencias a las jaulas
+* @field areaCaida1, areaCaida2, areaCaida3, areaCaida4, rectangulos donde cae el JLabel para que sea reemplazado
+*/
 public class PanelDraggedHabitats extends JPanel{
     private Rectangle areaCaida1,areaCaida2,areaCaida3,areaCaida4;
     private JLabel Jungla,Desierto;
@@ -15,7 +21,11 @@ public class PanelDraggedHabitats extends JPanel{
     private Jaula3 panelcito3;
     private Jaula4 panelcito4;
     private Point pPartida;
-        public PanelDraggedHabitats(Jaula1 panel,Jaula2 panel2,Jaula3 panel3, Jaula4 panel4){
+    
+    /*
+    * Metodo Constructor donde inicializamos las jaulas
+    */
+    public PanelDraggedHabitats(Jaula1 panel,Jaula2 panel2,Jaula3 panel3, Jaula4 panel4){
         setLayout(null);
 
         panelcito1=panel;
@@ -30,7 +40,11 @@ public class PanelDraggedHabitats extends JPanel{
 
         cargarimagenes();
         this.setOpaque(false);
-        }
+    }
+    
+    /*
+    * Metodo donde cargamos las imagenes de jungla y desierto
+    */
     public void cargarimagenes(){
             ImageIcon imageDesert=new ImageIcon("desertinicial.jpg");
             ImageIcon imageJungle=new ImageIcon("jungleinicial.jpg");
@@ -42,10 +56,18 @@ public class PanelDraggedHabitats extends JPanel{
             add(Desierto);
             oyenteMouse();
     }
+    
+    /**
+     * Metodo oyenteMouse para tener mejor orden en el codigo
+     */
     private void oyenteMouse(){
             oyenteJungla();
             oyenteDesierto();
     }
+    
+    /**
+     * Metodo MouseListener de Jungla, el encargado de cargar el Habitat en las Jaulas
+     */
     @SuppressWarnings("deprecation")
     private void oyenteJungla() {
         MouseAdapter mouseJungla = new MouseAdapter() {
@@ -90,6 +112,11 @@ public class PanelDraggedHabitats extends JPanel{
         Jungla.addMouseListener(mouseJungla);
         Jungla.addMouseMotionListener(mouseJungla); 
     }
+    
+    /**
+    * Metodo MouseListener de Desierto, el encargado de cargar el Habitat en las Jaulas
+    */
+    
     @SuppressWarnings("deprecation")
     private void oyenteDesierto(){
         MouseAdapter mouseDesierto = new MouseAdapter() {

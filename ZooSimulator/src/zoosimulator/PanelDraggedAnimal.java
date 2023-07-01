@@ -4,6 +4,14 @@
     import java.awt.*;
     import java.awt.event.MouseAdapter;
     import java.awt.event.MouseEvent;
+    
+    /*
+    * Clase que es la encargada de soltar a los Animales JLabel en los paneles
+    * @field gorilla,jirafa, jlabel que usaremos para poner sus imagenes
+    * @field mono, jirafa, ImageIcon que usamos inicializar sus imagenes
+    * @field panelcito1, panelcito2, panelcito3, panelcito4, paneles donde pondremos las referencias a las jaulas
+    * @field areaCaida1, areaCaida2, areaCaida3, areaCaida4, rectangulos donde cae el JLabel para que sea reemplazado
+    */
     public class PanelDraggedAnimal extends JPanel {
         private JLabel gorila,jirafa;
         private ImageIcon mono,jira;
@@ -13,6 +21,10 @@
         private Jaula3 panelcito3;
         private Jaula4 panelcito4;
         private Rectangle areaCaida1,areaCaida2,areaCaida3,areaCaida4;
+        
+        /*
+        *  Metodo constructor donde inicializamos las variables
+        */
         public PanelDraggedAnimal(Jaula1 panel,Jaula2 panel2,Jaula3 panel3,Jaula4 panel4){
             setLayout(null);
 
@@ -35,6 +47,10 @@
 
             this.setOpaque(false);
         }
+        
+        /*
+        *Metodo donde cargamos la imagen de gorilla y su setBounds
+        */
         public void cargarImagenGori(){
             System.out.println("se toco");
             gorila.setBounds(190, 130, mono.getIconWidth(), mono.getIconHeight());
@@ -43,6 +59,10 @@
             revalidate();
             repaint();
         }
+        
+        /*
+        *Metodo donde cargamos la imagen de Jira y su setBounds
+        */
         public void cargarImagenJira(){
             jirafa.setBounds(270, 130, jira.getIconWidth(), jira.getIconHeight());
             add(jirafa);
@@ -50,10 +70,18 @@
             revalidate();
             repaint();
         }
+        
+        /*
+        * Metodo donde agrupamos los MouseListener para tener mejor orden
+        */
         private void Oyentes(){
             oyenteGorila();
             oyenteJirafa();
         }
+        
+        /*
+        *Metodo MouseListener de Gorilla
+        */
         private void oyenteGorila(){
                 MouseAdapter mouseGorila = new MouseAdapter() {
                     @Override
@@ -74,20 +102,20 @@
                             panelcito2.coordenadasx = localizacion.x -580; // Resta la posición x de la Jaula2
                             panelcito2.coordenadasy = localizacion.y - 25;   // Resta la posición y de la Jaula2
 
-                            panelcito2.AñadirAnimal();
+                            panelcito2.AñadirAnimal(1);
 
                         }
                         else if(areaCaida3.contains(localizacion)){
                             panelcito3.coordenadasx = localizacion.x - 195; // Resta la posición x de la Jaula3
                             panelcito3.coordenadasy = localizacion.y - 381;
 
-                            panelcito3.AñadirAnimal();
+                            panelcito3.AñadirAnimal(1);
                         }
                         else if(areaCaida4.contains(localizacion)){
                             panelcito4.coordenadasx = localizacion.x - 580; // Resta la posición x de la Jaula3
                             panelcito4.coordenadasy = localizacion.y - 378;
 
-                            panelcito4.AñadirAnimal();
+                            panelcito4.AñadirAnimal(1);
                         }
 
                         remove(gorila);
@@ -114,6 +142,10 @@
                 gorila.addMouseListener(mouseGorila);
                 gorila.addMouseMotionListener(mouseGorila);
             }
+        
+        /*
+        * Metodo MouseListener de Jirafa
+        */
 
         private void oyenteJirafa(){
             MouseAdapter mouseJirafa = new MouseAdapter() {
@@ -135,20 +167,20 @@
                         panelcito2.coordenadasx = localizacion.x -580; // Resta la posición x de la Jaula2
                         panelcito2.coordenadasy = localizacion.y - 25;   // Resta la posición y de la Jaula2
 
-                        panelcito2.AñadirAnimal();
+                        panelcito2.AñadirAnimal(2);
 
                     }
                     else if(areaCaida3.contains(localizacion)){
                         panelcito3.coordenadasx = localizacion.x - 195; // Resta la posición x de la Jaula3
                         panelcito3.coordenadasy = localizacion.y - 381;
 
-                        panelcito3.AñadirAnimal();
+                        panelcito3.AñadirAnimal(2);
                     }
                     else if(areaCaida4.contains(localizacion)){
                         panelcito4.coordenadasx = localizacion.x - 580; // Resta la posición x de la Jaula3
                         panelcito4.coordenadasy = localizacion.y - 378;
 
-                        panelcito4.AñadirAnimal();
+                        panelcito4.AñadirAnimal(2);
                     }
 
                     remove(jirafa);

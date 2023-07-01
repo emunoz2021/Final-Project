@@ -4,15 +4,28 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/*
+* Metodo donde implementamos los Botones de Animal para luego Agregarlos a los habitats
+* @field botonGorilla, botonJirafa, botonLeon, botonCocodrilo, botones de Animales que luego son inicializados en el constructor
+* @field ventanita, Jframe que usaremoe para remover y agregar el PanelBotonesAnimalesar
+* @field panelsubPrincipal lo usamos para pasarselo a los botones en su constructor
+* @field panelon referencia a las jaulas
+*/
+
 public class PanelBotonesAnimales extends JPanel {
     BotonGorilla botonGorilla;
     BotonJirafa botonJirafa;
     BotonLeon botonLeon;
     BotonCocodrilo botonCocodrilo;
-    
     private JFrame ventanita;
     private PanelsubPrincipal panelSubPrincipal;
     private PanelDraggedAnimal panelon;
+    
+    /*
+    *Metodo constructor donde inicializamos las variables y creamos los botones
+    * @param panelSubPrincipal lo usamos para tener una referencia al PanelsubPrincipal y pasarlo luego a los Botones
+    * @param panel inicializa panelon
+    */
     public PanelBotonesAnimales(PanelsubPrincipal panelSubPrincipal,PanelDraggedAnimal panel) {
         this.panelSubPrincipal = panelSubPrincipal;
         this.panelon=panel;
@@ -29,7 +42,9 @@ public class PanelBotonesAnimales extends JPanel {
 
         oyenteDeCargaExtra();
     }
-
+    /*
+    * Metodo que usamos para ordenar de mejor manera nuestros metodos MouseListener
+    */
     private void oyenteDeCargaExtra(){
         oyenteBotonGorilla();
         oyenteBotonJirafa();
@@ -37,6 +52,9 @@ public class PanelBotonesAnimales extends JPanel {
         oyenteBotonCocodrilo();
     }
 
+    /*
+    * Metodo MouseListener de botonGorilla
+    */
     private void oyenteBotonGorilla(){
         MouseListener listenerGorilla = new MouseListener() {
             @Override
@@ -66,6 +84,9 @@ public class PanelBotonesAnimales extends JPanel {
         botonGorilla.addMouseListener(listenerGorilla);
     }
 
+    /*
+    * Metodo MouseListener de botonJirafa
+    */
     private void oyenteBotonJirafa(){
         MouseListener listenerJirafa= new MouseListener() {
             @Override
@@ -93,6 +114,10 @@ public class PanelBotonesAnimales extends JPanel {
         };
         botonJirafa.addMouseListener(listenerJirafa);
     }
+    
+    /*
+    * Metodo MouseListener de botonLeon ( falta terminar implementacion)
+    */
 
     private void oyenteBotonLeon(){
         MouseListener listenerLeon = new MouseListener() {
@@ -118,6 +143,10 @@ public class PanelBotonesAnimales extends JPanel {
         };
         botonLeon.addMouseListener(listenerLeon);
     }
+    
+    /*
+    * Metodo MouseListener de botonCocodrilo ( falta terminar implementacion)
+    */
 
     private void oyenteBotonCocodrilo(){
         MouseListener listenerCocodrilo = new MouseListener() {

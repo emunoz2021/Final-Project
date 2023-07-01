@@ -13,12 +13,12 @@ public class BotonCocodrilo extends BotonAnimal {
 
     @Override
     protected void cargarAnimal() {
-        ImageIcon image=new ImageIcon("cocodrilo.jpg");
+        /*ImageIcon image=new ImageIcon("cocodrilo.jpg");
         for(int i=-1;i< numCocodrilos;i++) {
             if(i==4) break;
             JLabel Gorilla = new JLabel(image);
             add(Gorilla);
-        }
+        }*/
         numCocodrilos++;
         repaint();
     }

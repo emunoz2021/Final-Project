@@ -13,12 +13,12 @@ public class BotonJirafa extends BotonAnimal {
 
     @Override
     protected void cargarAnimal() {
-        ImageIcon image=new ImageIcon("jirafa.jpg");
+        /*ImageIcon image=new ImageIcon("jirafa.jpg");
         for(int i=-1; i < numJirafas;i++) {
             if(i==4) break;
             JLabel Jirafa = new JLabel(image);
             add(Jirafa);
-        }
+        }*/
         numJirafas++;
         repaint();
     }

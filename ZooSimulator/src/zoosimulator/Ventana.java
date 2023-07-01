@@ -9,9 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
+
+/**
+ *Clase Ventana, donde abrimos el JFrame y le agregamos el PanelPrincipal
+ */
+
 public class Ventana extends JFrame{
     PanelPrincipal panel;
-    
+    /**
+     * Metodo Constructor de Ventana, donde le damos las caracteristicas que deseamos para nuestro JFrame
+     */
     public Ventana(){
         this.setLayout(new BorderLayout());
         this.setSize(800, 650);
