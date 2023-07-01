@@ -1,4 +1,7 @@
+
 package zoosimulator;
+
+
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,11 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class PanelPrincipal extends JPanel {
     private JFrame frame;
-    PanelsubPrincipal prueba;
+    PanelsubPrincipal subPane;
     ImageIcon Zoo;
     JButton botonPlay;
     JButton botonOption;
@@ -80,9 +82,15 @@ public class PanelPrincipal extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 System.out.println("Se Accedio al boton Play");
-                prueba= new PanelsubPrincipal(frame);
-              
-                frame.setContentPane(prueba);
+                subPane = new PanelsubPrincipal(frame);
+                
+                /*try {
+                    Thread.sleep(1000); 
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }*/
+                
+                frame.setContentPane(subPane);
                 frame.revalidate();
             }
             
@@ -139,6 +147,5 @@ public class PanelPrincipal extends JPanel {
             public void mouseExited(MouseEvent e) {}
         };
         botonExit.addMouseListener(exit);
-    }
-    
+    }   
 }
