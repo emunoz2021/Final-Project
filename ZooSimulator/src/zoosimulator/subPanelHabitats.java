@@ -68,53 +68,38 @@ public class subPanelHabitats extends JPanel{
         }
     }
     @SuppressWarnings("deprecation")
-    private void oyenteJungla(){
-         mouseJungla = new MouseAdapter() {
+    private void oyenteJungla() {
+        mouseJungla = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                pPartida= SwingUtilities.convertPoint(Jungla,e.getPoint(),Jungla.getParent());
+                pPartida = SwingUtilities.convertPoint(Jungla, e.getPoint(), Jungla.getParent());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 Point localizacion = SwingUtilities.convertPoint(Jungla, e.getPoint(), Jungla.getParent());
                 if (areaCaida1.contains(localizacion)) {
-                    JunglaFinal[0]=new ImageIcon("jungle.jpg");
-                    DesiertoFinal[0]=null;
+                    HabitatPanel habitatPanel = new HabitatPanel("jungle.jpg");
+                    habitatPanel.setBounds(173, 0, 221, 234);
+                    add(habitatPanel);
+                } else if (areaCaida2.contains(localizacion)) {
+                    HabitatPanel habitatPanel = new HabitatPanel("jungle.jpg");
+                    habitatPanel.setBounds(548, 0, 233, 230);
+                    add(habitatPanel);
+                } else if (areaCaida3.contains(localizacion)) {
+                    HabitatPanel habitatPanel = new HabitatPanel("jungle.jpg");
+                    habitatPanel.setBounds(173, 390, 221, 234);
+                    add(habitatPanel);
+                } else if (areaCaida4.contains(localizacion)) {
+                    HabitatPanel habitatPanel = new HabitatPanel("jungle.jpg");
+                    habitatPanel.setBounds(548, 386, 235, 230);
+                    add(habitatPanel);
                 }
-                else if(areaCaida2.contains(localizacion)){
-                    JunglaFinal[1]=new ImageIcon("jungle.jpg");
-                    DesiertoFinal[1]=null;
-                }
-                else if(areaCaida3.contains(localizacion)){
-                    JunglaFinal[2]=new ImageIcon("jungle.jpg");
-                    DesiertoFinal[2]=null;
-                }
-                else if(areaCaida4.contains(localizacion)){
-                    JunglaFinal[3]=new ImageIcon("jungle.jpg");
-                    DesiertoFinal[3]=null;
-                }
-                //remove(Jungla);
-                remove(Desierto);
+                remove(Jungla);
                 revalidate();
                 repaint();
-                pPartida=null;
+                pPartida = null;
                 Jungla.removeMouseMotionListener(mouseJungla);
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e){
-                Point localizacion=SwingUtilities.convertPoint(Jungla,e.getPoint(),Jungla.getParent());
-                if(Jungla.getParent().getBounds().contains(localizacion)){
-                    Point nuevaLocalizacion=Jungla.getLocation();
-                    nuevaLocalizacion.translate(localizacion.x-pPartida.x,localizacion.y-pPartida.y);
-                    nuevaLocalizacion.x=Math.max(nuevaLocalizacion.x,0);
-                    nuevaLocalizacion.y=Math.max(nuevaLocalizacion.y,0);
-                    nuevaLocalizacion.x=Math.min(nuevaLocalizacion.x,Jungla.getParent().getWidth()-Jungla.getWidth());
-                    nuevaLocalizacion.y=Math.min(nuevaLocalizacion.y,Jungla.getParent().getHeight()-Jungla.getHeight());
-                    Jungla.setLocation(nuevaLocalizacion);
-                    pPartida=localizacion;
-                }
             }
         };
         Jungla.addMouseListener(mouseJungla);
@@ -170,6 +155,6 @@ public class subPanelHabitats extends JPanel{
             }
         };
         Desierto.addMouseListener(mouseDesierto);
-        Desierto.addMouseMotionListener(mouseDesierto);  // esto es nuevo
+        Desierto.addMouseMotionListener(mouseDesierto);
     }
 }
