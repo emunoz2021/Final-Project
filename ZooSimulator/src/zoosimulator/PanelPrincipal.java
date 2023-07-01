@@ -1,7 +1,5 @@
 package zoosimulator;
 
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,14 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-/**
-*Clase que es el panel principal para sus subpaneles  correspondientes
-*@field com,corresponde al panel comprador, es decir, su subpanel
-*@field exp,corresponde al panel expendedor, es decir, otro subpanel
-*/
 public class PanelPrincipal extends JPanel {
     private JFrame frame;
-    PanelSiguiente prueba;
+    PanelsubPrincipal prueba;
     ImageIcon Zoo;
     JButton botonPlay;
     JButton botonOption;
@@ -87,7 +80,7 @@ public class PanelPrincipal extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 System.out.println("Se Accedio al boton Play");
-                prueba= new PanelSiguiente();
+                prueba= new PanelsubPrincipal(frame);
               
                 frame.setContentPane(prueba);
                 frame.revalidate();
@@ -147,8 +140,5 @@ public class PanelPrincipal extends JPanel {
         };
         botonExit.addMouseListener(exit);
     }
-    
-    
-    
     
 }
