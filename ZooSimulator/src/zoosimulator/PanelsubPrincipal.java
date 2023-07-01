@@ -6,51 +6,45 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Graphics;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 
 public class PanelsubPrincipal extends JPanel {
     private JButton BotonHabitat, BotonAnimal, BotonComida, BotonExit;
-    public int num1 = 0, num2 = 0;
-    ImageIcon path;
     JFrame ventanita;
     private Image fondo;
-
-    private JPanel panel1, panel2, panel3, panel4; //Paneles que usaremos para colocar los habitats
+    private Jaula1 panel1;
+    private Jaula2 panel2;
+    private Jaula3 panel3;
+    private Jaula4 panel4;
 
     public PanelsubPrincipal(JFrame vent1) {
         ventanita = vent1;
         setLayout(null);
         this.fondo = new ImageIcon("path.jpg").getImage(); 
         
-        panel1 = new JPanel();
-        panel1.setBounds(175, 5, 218, 226);
-        configuraPanel(panel1);
+        panel1 = new Jaula1();
+        panel1.setBounds(175, 5, 218, 220);
 
-        panel2 = new JPanel();
+
+        panel2 = new Jaula2();
         panel2.setBounds(551, 5, 229, 215);
-        configuraPanel(panel2);
 
-        panel3 = new JPanel();
+        panel3 = new Jaula3();
         panel3.setBounds(175, 381, 219, 226);
-        configuraPanel(panel3);
 
-        panel4 = new JPanel();
+        panel4 = new Jaula4();
         panel4.setBounds(551, 378, 229, 230);
-        configuraPanel(panel4);
+
 
         add(panel1);
         add(panel2);
         add(panel3);
         add(panel4);
-
         CargaBotones();
     }
 
-    private void configuraPanel(JPanel panel) {
-        panel.setOpaque(true);  // Panel opaco
-        panel.setBackground(Color.BLACK);  // Fondo negro
-        panel.setLayout(null);  // Sin layout
-    }
-    
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), this);
@@ -100,6 +94,7 @@ public class PanelsubPrincipal extends JPanel {
         oyenteExit();
     }
 
+    @SuppressWarnings("deprecation")
     private void OyenteAnimales() {
         MouseListener MouseAnimal = new MouseListener() {
             @Override
@@ -110,9 +105,14 @@ public class PanelsubPrincipal extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                PanelExtraAnimales panelExtraAnimales = new PanelExtraAnimales(PanelsubPrincipal.this);
+                PanelDraggedAnimal panelAnimal=new PanelDraggedAnimal(panel1,panel2,panel3,panel4);
+                panelAnimal.setBounds(0, 0, getWidth(), getHeight());
+                ventanita.getLayeredPane().add(panelAnimal,new Integer(7));
+
+                PanelBotonesAnimales panelExtraAnimales = new PanelBotonesAnimales(PanelsubPrincipal.this,panelAnimal);
                 panelExtraAnimales.setBounds(BotonAnimal.getX() + 175, BotonAnimal.getY(), 200, 200);
-                ventanita.getLayeredPane().add(panelExtraAnimales, JLayeredPane.POPUP_LAYER);
+                ventanita.getLayeredPane().add(panelExtraAnimales, new Integer(3));
+
                 ventanita.revalidate();
                 ventanita.repaint();
             }
@@ -161,9 +161,9 @@ public class PanelsubPrincipal extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 System.out.println("habitat");
-                subPanelHabitats sub1=new subPanelHabitats();
+                PanelDraggedHabitats sub1=new PanelDraggedHabitats(panel1,panel2,panel3,panel4);
                 sub1.setBounds(0, 0, getWidth(), getHeight());
-                add(sub1,0);
+                ventanita.getLayeredPane().add(sub1, new Integer(2));
                 revalidate();
             }
 
