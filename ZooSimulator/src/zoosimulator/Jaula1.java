@@ -5,6 +5,14 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+* Clase que es el Panel donde se encontraran los animales
+* @field Gorillas, Jirafas, arraylist que almacena los animales que se agregan a la Jaula
+* @field imagen, representacion del objeto
+* @field coordenadasx, coordenadasy, coordenadas que pasa el PanelDraggedAnimal
+* @field dx, dy, coordenadas que varian en el tiempo
+* @field rand, lo usamos para obtener valores de coordenadas aleatorias
+*/
 public class Jaula1 extends JLayeredPane {
     private ArrayList<Gorila> Gorilas;
     private ArrayList<Jirafa> Jirafas;
@@ -12,12 +20,18 @@ public class Jaula1 extends JLayeredPane {
     private int dx,dy;
     public int coordenadasx, coordenadasy;
     private Random rand = new Random();
-
+    /*
+    * Metodo constructor que inicializa los arraylist()
+    */
     public Jaula1() {
         Gorilas = new ArrayList<>();
         Jirafas= new ArrayList<>();
         setLayout(null);
     }
+    
+    /*
+    * Metodo que añade al animal a la Jaula y le da el movimiento
+    */
     public void AñadirAnimal(int i) {
         if (i== 1 && Jirafas.isEmpty()) {
             Gorilas.add(new Gorila());
@@ -70,7 +84,10 @@ public class Jaula1 extends JLayeredPane {
             timer.start();
         }
     }
-
+    
+    /*
+    * Metodo que carga el Habitat y lo pone en una capa del JLayeredPane
+    */
 
     @SuppressWarnings("deprecation")
     public void cargarHabitat(int num) {
