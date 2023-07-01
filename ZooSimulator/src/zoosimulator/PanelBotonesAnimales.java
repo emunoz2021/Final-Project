@@ -11,17 +11,16 @@ import javax.swing.*;
 * @field panelsubPrincipal lo usamos para pasarselo a los botones en su constructor
 * @field panelon referencia a las jaulas
 */
-
 public class PanelBotonesAnimales extends JPanel {
     BotonGorilla botonGorilla;
     BotonJirafa botonJirafa;
     BotonLeon botonLeon;
     BotonCocodrilo botonCocodrilo;
+    
     private JFrame ventanita;
     private PanelsubPrincipal panelSubPrincipal;
     private PanelDraggedAnimal panelon;
-    
-    /*
+     /*
     *Metodo constructor donde inicializamos las variables y creamos los botones
     * @param panelSubPrincipal lo usamos para tener una referencia al PanelsubPrincipal y pasarlo luego a los Botones
     * @param panel inicializa panelon
@@ -42,7 +41,7 @@ public class PanelBotonesAnimales extends JPanel {
 
         oyenteDeCargaExtra();
     }
-    /*
+      /*
     * Metodo que usamos para ordenar de mejor manera nuestros metodos MouseListener
     */
     private void oyenteDeCargaExtra(){
@@ -83,7 +82,6 @@ public class PanelBotonesAnimales extends JPanel {
         
         botonGorilla.addMouseListener(listenerGorilla);
     }
-
     /*
     * Metodo MouseListener de botonJirafa
     */
@@ -104,7 +102,8 @@ public class PanelBotonesAnimales extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 panelon.cargarImagenJira();
                 panelon.repaint();
-                panelon.revalidate();}
+                panelon.revalidate();
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {}
@@ -114,11 +113,9 @@ public class PanelBotonesAnimales extends JPanel {
         };
         botonJirafa.addMouseListener(listenerJirafa);
     }
-    
     /*
-    * Metodo MouseListener de botonLeon ( falta terminar implementacion)
+    * Metodo MouseListener de botonLeon
     */
-
     private void oyenteBotonLeon(){
         MouseListener listenerLeon = new MouseListener() {
             @Override
@@ -133,7 +130,11 @@ public class PanelBotonesAnimales extends JPanel {
             public void mousePressed(MouseEvent e) {}
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+                panelon.cargarImagenLeon();
+                panelon.repaint();
+                panelon.revalidate();
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {}
@@ -143,11 +144,9 @@ public class PanelBotonesAnimales extends JPanel {
         };
         botonLeon.addMouseListener(listenerLeon);
     }
-    
     /*
-    * Metodo MouseListener de botonCocodrilo ( falta terminar implementacion)
+    * Metodo MouseListener de botonCocodrilo
     */
-
     private void oyenteBotonCocodrilo(){
         MouseListener listenerCocodrilo = new MouseListener() {
             @Override
@@ -162,7 +161,11 @@ public class PanelBotonesAnimales extends JPanel {
             public void mousePressed(MouseEvent e) {}
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+                panelon.cargarImagenCocodrilo();
+                panelon.repaint();
+                panelon.revalidate();
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {}
