@@ -2,13 +2,31 @@ package zoosimulator;
 
 import javax.swing.*;
 
-public class Jirafa implements AnimalesBuilder{
+public class Jirafa implements AnimalesBuilder {
     private ImageIcon Jirafa;
+    private int alimentacion; 
+    private String habitat; 
+
     public Jirafa(){
-        Jirafa =new ImageIcon("jirafa.png");
+        Jirafa = new ImageIcon("jirafa.png");
+        alimentacion = 100; 
+        habitat = "Jungla"; 
     }
+
     @Override
     public ImageIcon getImagen() {
         return Jirafa;
+    }
+
+    public void comer(int cantidadComida) {
+        alimentacion += cantidadComida;
+    }
+
+    public boolean verificarNecesidades() {
+        return alimentacion > 0;
+    }
+
+    public boolean esHabitatAdecuado(String habitat) {
+        return this.habitat.equals(habitat);
     }
 }
